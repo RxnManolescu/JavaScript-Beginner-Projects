@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="showSomething(true)">
+    <input type="button" value="Show Records" id="recordsBtn" onclick="showSomething(true)">
+    <br>
+    <input type="button" value="Filter Records" id="recordsBtn" onclick="showSomething(false)">
+    <select id="dept">
+        <option value="hr">HR</option>
+        <option value="it">IT</option>
+        <option value="sales">Sales</option>
+    </select>
+
+    <br>
+    <table id="data">
+        <tr>
+            <td>SNo</td>
+            <td>RegNo</td>
+            <td>Name</td>
+            <td>Department</td>
+            <td>Salary</td>
+            <td>Tax</td>
+        </tr>
+    </table>
+
+    <script>
+
+        let records = 
+        [{
+            "regno": 78,
+            "name": "Mia",
+            "department": "it",
+            "salary": 1500
+        },
+        {
+            "regno": 28,
+            "name": "Lia",
+            "department": "it",
+            "salary": 3500
+        },
+        {
+            "regno": 75,
+            "name": "Ana",
+            "department": "hr",
+            "salary": 1000
+        },
+        {
+            "regno": 82,
+            "name": "John",
+            "department": "sales",
+            "salary": 2000
+        }]
+
+        function showSomething(choice) {
+            data.innerHTML = `<tr>
+            <td>SNo</td>
+            <td>RegNo</td>
+            <td>Name</td>
+            <td>Department</td>
+            <td>Salary</td>
+            <td>Tax</td>
+        </tr>`
+            for(let i=0; i<records.length;i++){
+                if(records[i].department == dept.value || choice) {
+                    let row=document.createElement("tr")
+                    let tdSNo = document.createElement("td")
+                    let tdRegNo = document.createElement("td")
+                    let tdName = document.createElement("td")
+                    let tdDepartment = document.createElement("td")
+                    let tdSalary = document.createElement("td")
+                    let tdTax = document.createElement("td")
+                    let tdOperations = document.createElement("td")
+
+                    tdSNo.innerHTML = i+1;
+                    tdRegNo.innerHTML = records[i].regno;
+                    tdName.innerHTML = records[i].name;
+                    tdDepartment.innerHTML = records[i].department;
+                    tdSalary.innerHTML = records[i].salary;
+
+                    
+
+                    if(records[i].salary >= 2000) {
+                        tdTax.innerHTML = records[i].salary*21/100
+                    } else {
+                        tdTax.innerHTML = records[i].salary*10/100
+                    }
+
+                    let btnDelete = document.createElement("input")
+                    btnDelete.type = "button";
+                    btnDelete.value = "Delete";
+                    btnDelete.onclick = function deleteRecord() {
+                        let choice = confirm("Are you sure?")
+                        if(choice == true) {
+                            records.splice(i, 1)
+                            showSomething();
+                        }
+                    }
+
+                    tdOperations.appendChild(btnDelete)
+
+                    let btnEdit = document.createElement("input")
+                    btnEdit.type = "button";
+                    btnEdit.value = "Edit";
+                    btnEdit.onclick = function edit() {
+                        updating();
+                    }
+
+                    tdOperations.appendChild(btnEdit)
+
+                    row.appendChild(tdSNo)
+                    row.appendChild(tdRegNo)
+                    row.appendChild(tdName)
+                    row.appendChild(tdDepartment)
+                    row.appendChild(tdSalary)
+                    row.appendChild(tdTax)
+                    row.appendChild(tdOperations)
+
+                    data.appendChild(row)
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

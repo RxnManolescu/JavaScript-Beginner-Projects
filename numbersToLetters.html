@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function ones(number){
+            let answer=""
+            switch(number){
+                case 1: answer="One";break
+                case 2: answer="Two";break
+                case 3: answer="Three";break
+                case 4: answer="Four";break
+                case 5: answer="Five";break
+                case 6: answer="Six";break
+                case 7: answer="Seven";break
+                case 8: answer="Eight";break
+                case 9: answer="Nine";break
+                case 10: answer="Ten";break
+                case 11: answer="Eleven";break
+                case 12: answer="Twelve";break
+                case 13: answer="Thirteen";break
+                case 14: answer="Fourteen";break
+                case 15: answer="Fifteen";break
+                case 16: answer="Sixteen";break
+                case 17: answer="Seventeen";break
+                case 18: answer="Eighteen";break
+                case 19: answer="Nineteen";break
+                case 20: answer="Twenty";break;
+                case 30: answer="Thirty";break;
+                case 40: answer="Forty";break;
+                case 50: answer="Fifty";break;
+                case 60: answer="Sixty";break;
+                case 70: answer="Seventy";break;
+                case 80: answer="Eighty";break;
+                case 90: answer="ninty";break;
+            }
+
+            return answer
+        }
+
+        function convert(){
+
+            let result=""
+            let num=parseInt(t1.value)
+
+            if(num>=1000){
+                result= ones( parseInt(num/1000) ) + " Thousand "
+                num = num %1000
+
+            }
+
+            if(num>=100){
+
+                result += ones( parseInt(num/100) ) + " Hundred "
+                num = num %100
+            }
+
+            if(num>=20){
+                result += ones( parseInt(num/10) *10)
+                num = num %10
+            }
+
+            if(num>=1){
+                result += ones(num)
+            }
+
+            console.log(num)
+
+            t2.value=result
+        }
+    </script>
+
+    <input type="text" id="t1"> <br>
+    <input type="Button" onclick="convert()"> <br>
+    <input type="text" id="t2" size="200"> <br>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="https://www.google.com" onsubmit="checking()">
+        Name: <input type="text" id="username" name="username">
+        <span id="nameError" style="color:red;visibility:hidden"></span><br>
+        Email: <input type="text" id="emailAddress" name="emailAddress">
+        <span id="emailError" style="color:red;visibility:hidden"></span><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function countSomething(character) {
+            let data = emailAddress.value;
+            let count = 0;
+            for (let i = 0; i < data.length; i++) {
+                if(data.substring(i, i+1) == character) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        function checking() {
+            if (username.value == "") {
+                nameError.innerHTML = "** Name is missing!"
+                nameError.style.visibility = "visible";
+                event.preventDefault();
+            } else {
+                nameError.style.visibility = "hidden"
+            }
+            if (emailAddress.value == "") {
+                emailError.innerHTML = "** Email address missing!"
+                emailError.style.visibility = "visible";
+                event.preventDefault();
+            } else {
+                if (countSomething('@') != 1 || countSomething('.') == 0) {
+                    emailError.innerHTML = "** Email address invalid!"
+                    emailError.style.visibility = "visible";
+                    event.preventDefault();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

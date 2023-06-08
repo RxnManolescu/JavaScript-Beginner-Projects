@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" name="" id="t1">
+    <input type="button" value="Remove Duplicates" onclick="wordCount()">
+    <input type="text" name="" id="t2">
+
+    <script>
+function wordCount() {
+    let msg = t1.value;
+    let uniqueWords = []
+    let words = msg.split(" ")
+    for (word of words) {
+        if (uniqueWords.includes(word)== false) {
+            uniqueWords.push(word)
+        }
+    }
+    t2.value = uniqueWords
+}
+    </script>
+</body>
+</html>
